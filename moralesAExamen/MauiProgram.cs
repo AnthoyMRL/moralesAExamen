@@ -1,25 +1,35 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using moralesAExamen.Services;
+using moralesAExamen.ViewModels;
+using moralesAExamen.Views;
 
-namespace moralesAExamen
+namespace moralesAExamen;
+
+public static class MauiProgram
 {
-    public static class MauiProgram
+    public static MauiApp CreateMauiApp()
     {
-        public static MauiApp CreateMauiApp()
-        {
-            var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+        var builder = MauiApp.CreateBuilder();
+        builder
+            .UseMauiApp<App>()
+            .ConfigureFonts(fonts =>
+            {
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+            });
 
-#if DEBUG
-    		builder.Logging.AddDebug();
-#endif
+        // Servicios
+        builder.Services.AddSingleton<DatabaseService>();
+        builder.Services.AddSingleton<LogService>();
 
-            return builder.Build();
-        }
+        // ViewModels
+        builder.Services.AddTransient<AddMovieViewModel>();
+        builder.Services.AddTransient<MovieListViewModel>();
+        builder.Services.AddTransient<LogsViewModel>();
+
+        // Views
+        builder.Services.AddTransient<AddMoviePage>();
+        builder.Services.AddTransient<MovieListPage>();
+        builder.Services.AddTransient<LogsPage>();
+
+        return builder.Build();
     }
 }

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="moralesAExamen.Views.MovieListPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Lista de Películas">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- Header -->
+        <StackLayout Grid.Row="0" Padding="20,10">
+            <Label Text="{Binding Movies.Count, StringFormat='Total de películas: {0}'}" 
+                   FontSize="14" 
+                   TextColor="Gray" />
+        </StackLayout>
+
+        <!-- Lista -->
+        <CollectionView Grid.Row="1" 
+                        ItemsSource="{Binding Movies}" 
+                        Margin="10,0">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="15" RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,Auto">
+
+                        <!-- Título -->
+                        <Label Grid.Row="0" Grid.Column="0" 
+                               Text="{Binding Titulo}" 
+                               FontSize="18" 
+                               FontAttributes="Bold" />
+
+                        <!-- Calificación -->
+                        <Label Grid.Row="0" Grid.Column="1" 
+                               Text="{Binding Calificacion, StringFormat='{0}/10'}" 
+                               FontSize="16" 
+                               FontAttributes="Bold" 
+                               TextColor="Orange" />
+
+                        <!-- Detalles -->
+                        <StackLayout Grid.Row="1" Grid.ColumnSpan="2" 
+                                     Orientation="Horizontal" 
+                                     Spacing="15">
+                            <Label Text="{Binding Genero}" 
+                                   BackgroundColor="LightBlue" 
+                                   Padding="8,4" 
+                                   FontSize="12" />
+                            <Label Text="{Binding AnioEstreno}" 
+                                   FontSize="14" 
+                                   TextColor="Gray" />
+                            <Label Text="{Binding FechaRegistro, StringFormat='Registrada: {0:dd/MM/yyyy}'}" 
+                                   FontSize="12" 
+                                   TextColor="Gray" />
+                        </StackLayout>
+
+                        <!-- Separador -->
+                        <BoxView Grid.Row="2" Grid.ColumnSpan="2" 
+                                 Height="1" 
+                                 BackgroundColor="LightGray" 
+                                 Margin="0,10,0,0" />
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>

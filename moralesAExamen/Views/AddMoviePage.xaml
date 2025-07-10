@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="moralesAExamen.Views.AddMoviePage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Agregar Película">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+
+            <!-- Título de la página -->
+            <Label Text="Anthony Morales - 01/02/2003" 
+                   FontSize="16" 
+                   HorizontalOptions="Center" 
+                   TextColor="Gray" />
+
+            <!-- Formulario -->
+            <Frame BackgroundColor="Black" HasShadow="True" Padding="20">
+                <StackLayout Spacing="15">
+
+                    <!-- Título -->
+                    <Label Text="Título *" FontAttributes="Bold" />
+                    <Entry Text="{Binding Titulo}" 
+                           Placeholder="Ingrese el título de la película" />
+
+                    <!-- Género -->
+                    <Label Text="Género *" FontAttributes="Bold" />
+                    <Picker ItemsSource="{Binding Generos}" 
+                            SelectedItem="{Binding Genero}" 
+                            Title="Seleccione un género" />
+
+                    <!-- Año de Estreno -->
+                    <Label Text="Año de Estreno *" FontAttributes="Bold" />
+                    <Entry Text="{Binding AnioEstreno}" 
+                           Keyboard="Numeric" 
+                           Placeholder="Ej: 2024" />
+
+                    <!-- Calificación -->
+                    <Label Text="Calificación (3-10) *" FontAttributes="Bold" />
+                    <Entry Text="{Binding Calificacion}" 
+                           Keyboard="Numeric" 
+                           Placeholder="Calificación del 3 al 10" />
+
+                    <!-- Mensajes -->
+                    <Label Text="{Binding ErrorMessage}" 
+                           TextColor="Red" 
+                           IsVisible="{Binding ErrorMessage, Converter={StaticResource StringToBoolConverter}}" />
+
+                    <Label Text="{Binding SuccessMessage}" 
+                           TextColor="Green" 
+                           IsVisible="{Binding SuccessMessage, Converter={StaticResource StringToBoolConverter}}" />
+
+                    <!-- Botones -->
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                        <Button Text="Agregar Película" 
+                                Command="{Binding AddMovieCommand}" 
+                                BackgroundColor="DodgerBlue" 
+                                TextColor="White" 
+                                Grid.Column="0" />
+
+                        <Button Text="Limpiar" 
+                                Command="{Binding ClearFormCommand}" 
+                                BackgroundColor="Gray" 
+                                TextColor="White" 
+                                Grid.Column="1" />
+                    </Grid>
+
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

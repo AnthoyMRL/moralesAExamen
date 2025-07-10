@@ -3,13 +3,24 @@
     x:Class="moralesAExamen.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:moralesAExamen"
-    Shell.FlyoutBehavior="Disabled"
-    Title="moralesAExamen">
+    xmlns:local="clr-namespace:moralesAExamen.Views"
+    Title="MovieCatalogApp">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <ShellContent
+            Title="Agregar"
+            ContentTemplate="{DataTemplate local:AddMoviePage}"
+            Icon="add.png" />
+
+        <ShellContent
+            Title="Películas"
+            ContentTemplate="{DataTemplate local:MovieListPage}"
+            Icon="list.png" />
+
+        <ShellContent
+            Title="Logs"
+            ContentTemplate="{DataTemplate local:LogsPage}"
+            Icon="document.png" />
+    </TabBar>
 
 </Shell>

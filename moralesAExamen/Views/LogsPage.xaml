@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="moralesAExamen.Views.LogsPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Logs - Logs_Morales.txt">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- Header -->
+        <StackLayout Grid.Row="0" Padding="20,10">
+            <Label Text="{Binding Logs.Count, StringFormat='Total de registros en log: {0}'}" 
+                   FontSize="14" 
+                   TextColor="Gray" />
+        </StackLayout>
+
+        <!-- Lista de Logs -->
+        <CollectionView Grid.Row="1" 
+                        ItemsSource="{Binding Logs}" 
+                        Margin="10,0">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="15,10">
+                        <Frame BackgroundColor="LightGray" 
+                               Padding="10" 
+                               HasShadow="False">
+                            <Label Text="{Binding .}" 
+                                   FontFamily="Courier" 
+                                   FontSize="12" 
+                                   TextColor="Black" />
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>
